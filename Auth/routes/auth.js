@@ -45,4 +45,17 @@ router.post("/register", async (req, res) => {
   }
 });
 
+// Login
+router.post("/login", async (req, res) => {
+  // Checking if the email exists
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) return res.status(400).send("No account with this email!");
+
+  //Password is correct
+  const validPass = await bcrypt.compare(req.body.password, user.password);
+  if (!validPass) return res.status(400).send("Email or password is invalid");
+
+  res.send("Logged in!");
+});
+
 module.exports = router;
