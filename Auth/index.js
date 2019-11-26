@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 
 // Import Routes
 const authRoute = require("./routes/auth");
+const jobsRoute = require("./routes/jobs");
 
 dotenv.config();
 
@@ -20,5 +21,6 @@ app.use(express.json());
 
 // Route MiddleWares
 app.use("/api/user", authRoute);
+app.use("/api/jobs", jobsRoute);
 
 app.listen(8080, () => console.log("Server is up and running"));
