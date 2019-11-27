@@ -1,14 +1,15 @@
 import React from "react";
-import Login from './components/Login/Login';
-import Register from './components/Register/Register';
+import Welcome from './components/Welcome/Welcome'
+import Jobs from './components/Jobs/Jobs'
+import PrivateRoute from './components/PrivateRoute/PrivateRoute'
+import { Route } from 'react-router-dom'
 import "./App.css";
 
 function App() {
   return <div className="App">
-    <h1>Dev Hired</h1>
-    <h3>Your personal portal to organize all the jobs that you applied for</h3>
-    <Login />
-    <Register />
+
+    <Route exact path='/' component={Welcome} />
+    <PrivateRoute path='/home' component={Jobs} />
   </div>;
 }
 

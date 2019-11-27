@@ -23,6 +23,7 @@ function Login(props) {
             .then(result => {
                 localStorage.setItem("token", result.data)
                 console.log(result)
+                props.history.push('/home')
             })
             .catch(err => {
                 throw (err)
