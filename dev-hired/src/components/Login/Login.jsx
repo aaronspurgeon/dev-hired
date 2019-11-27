@@ -21,7 +21,8 @@ function Login(props) {
         api()
             .post('/api/user/login', data)
             .then(result => {
-                localStorage.setItem("token", result.data.token)
+                localStorage.setItem("token", result.data)
+                console.log(result)
             })
             .catch(err => {
                 throw (err)
@@ -41,3 +42,5 @@ function Login(props) {
         </div>
     )
 }
+
+export default Login
