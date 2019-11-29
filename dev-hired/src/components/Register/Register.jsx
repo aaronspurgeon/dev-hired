@@ -20,7 +20,7 @@ function Register(props) {
         e.preventDefault()
 
         api()
-            .post('/api/user/register', data)
+            .post('user/register', data)
             .then(res => {
                 setData({
                     email: '',

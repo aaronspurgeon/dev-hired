@@ -3,7 +3,7 @@ const verify = require("./privateRoute");
 const Jobs = require("../model/Jobs");
 
 // Get all the jobs posted by the user
-router.get("/", verify, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const jobs = await Jobs.find();
     res.json(jobs);

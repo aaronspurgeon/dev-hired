@@ -19,7 +19,7 @@ function Login(props) {
         e.preventDefault()
 
         api()
-            .post('/api/user/login', data)
+            .post('user/login', data)
             .then(result => {
                 localStorage.setItem("token", result.data)
                 console.log(result)
