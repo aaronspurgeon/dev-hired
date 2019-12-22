@@ -1,52 +1,35 @@
-import React, { useState } from 'react'
-import api from '../../utils/api';
+import React, { useState, useCallback } from 'react'
+// import api from '../../utils/api';
+import { withRouter } from 'react-router';
+import app from '../../base'
 
-function Register(props) {
-    const [error, setError] = useState();
-    const [data, setData] = useState({
-        email: '',
-        password: '',
-        name: ''
-    })
+function Register({ history }) {
+    const handleRegister = useCallback(async event => {
+        event.preventDefault();
+        const { email, password } = event.target.elements;
+        try {
+            await app
+                .auth()
+                .createUserWithEmailAndPassword(email.value, password.value);
+            history.push("/home");
+        } catch (err) {
+            alert(err);
+        }
+    }, [history]);
 
-    const handleChange = e => {
-        setData({
-            ...data,
-            [e.target.name]: e.target.value
-        })
-    }
-
-    const handleSubmit = e => {
-        e.preventDefault()
-
-        api()
-            .post('user/register', data)
-            .then(res => {
-                setData({
-                    email: '',
-                    password: '',
-                    name: ''
-                })
-            })
-            .catch(err => {
-                throw (err)
-            })
-    }
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <h2>Register</h2>
+            <form onSubmit={handleRegister}>
                 <label htmlFor="email">Email</label>
                 <input type="email" name='email' placeholder='Enter an email' value={data.email} onChange={handleChange} />
                 <label htmlFor="password">Password</label>
                 <input type="password" name='password' placeholder='Enter a password' value={data.password} onChange={handleChange} />
-                <label htmlFor="email">Name</label>
-                <input type="name" name='name' placeholder='Enter your name' value={data.name} onChange={handleChange} />
-
                 <button type='submit'>Register</button>
             </form>
         </div>
     )
 }
 
-export default Register;
+export default withRouter(Register);

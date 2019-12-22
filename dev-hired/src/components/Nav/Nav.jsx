@@ -1,8 +1,10 @@
 import React from 'react';
 import './Nav.scss';
+import app from '../../base';
 
 
 function Nav() {
+    // <button onClick={() => app.auth().signOut()}>Sign Out</button>
     return (
         <nav>
             <div>
