@@ -1,15 +1,25 @@
 import React from 'react';
-import Login from '../Login/Login';
-import Register from '../Register/Register';
+import Nav from '../Nav/Nav';
+import "./Welcome.scss";
+import people from '../../images/landing-people.svg';
 
 function Welcome({ history }) {
     return (
-        <div>
-            <h1>Dev Hired</h1>
-            <h3>Your personal portal to organize all the jobs that you applied for</h3>
-            <Login history={history} />
-            <Register />
-        </div>
+        <>
+            <Nav />
+            <div className="welcome">
+                <div className="cta">
+                    <h1>Organization made simple.</h1>
+                    <h3>Your personal portal to make landing your next developer adventure a breeze.</h3>
+                    <button>Get Started.</button>
+                </div>
+
+                <div className="hero-img">
+                    <img src={people} alt="Two Coworkers pair programming." />
+                </div>
+            </div>
+        </>
+
     )
 }
 

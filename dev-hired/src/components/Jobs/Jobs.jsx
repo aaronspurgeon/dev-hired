@@ -32,8 +32,8 @@ function Jobs(props) {
         <div>
             <h1>List of jobs applied to</h1>
             {jobs.map(job => (
-                <p>{job}</p>
-            )}
+                <p>{job.company}</p>
+            ))}
 
         </div>
     )
