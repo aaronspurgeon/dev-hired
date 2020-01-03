@@ -11,7 +11,7 @@ function Welcome({ history }) {
                 <div className="cta">
                     <h1>Organization made simple.</h1>
                     <h3>Your personal portal to make landing your next developer adventure a breeze.</h3>
-                    <button>Get Started.</button>
+                    <button>Get Started...</button>
                 </div>
 
                 <div className="hero-img">
