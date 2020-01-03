@@ -1,42 +1,40 @@
-import React, { useState } from 'react'
-import api from '../../utils/api'
+import React, { useContext, useCallback } from 'react';
+import { withRouter, Redirect } from 'react-router';
+import app from '../../base';
+import { AuthContext } from '../../Auth';
 
-function Login(props) {
-    const [error, setError] = useState()
-    const [data, setData] = useState({
-        password: '',
-        email: ''
-    })
 
-    const handleChange = e => {
-        setData({
-            ...data,
-            [e.target.name]: e.target.value
-        })
+function Login({ history }) {
+    const handleLogin = useCallback(
+        async e => {
+            e.preventDefault();
+            const { email, password } = e.target.elements;
+            try {
+                await app
+                    .auth()
+                    .signInWithEmailAndPassword(email.value, password.value);
+                history.pushState('/home');
+            } catch (err) {
+                alert(err)
+            }
+        },
+        [history]
+    );
+
+    const { currentUser } = useContext(AuthContext);
+
+    if (currentUser) {
+        return <Redirect to='/home' />
     }
 
-    const handleSubmit = e => {
-        e.preventDefault()
-
-        api()
-            .post('user/login', data)
-            .then(result => {
-                localStorage.setItem("token", result.data)
-                console.log(result)
-                props.history.push('/home')
-            })
-            .catch(err => {
-                throw (err)
-            })
-    }
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleLogin}>
                 <label htmlFor="email">Email</label>
-                <input type="email" name='email' placeholder='Enter email' value={data.email} onChange={handleChange} />
+                <input type="email" name='email' placeholder='Enter email' />
                 <label htmlFor="password">Password</label>
-                <input type="password" name='password' placeholder='Enter password' value={data.password} onChange={handleChange} />
+                <input type="password" name='password' placeholder='Enter password' />
 
                 <button type='submit'>Login</button>
             </form>
@@ -44,4 +42,4 @@ function Login(props) {
     )
 }
 
-export default Login
+export default withRouter(Login);

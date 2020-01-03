@@ -23,9 +23,9 @@ function Register({ history }) {
             <h2>Register</h2>
             <form onSubmit={handleRegister}>
                 <label htmlFor="email">Email</label>
-                <input type="email" name='email' placeholder='Enter an email' value={data.email} onChange={handleChange} />
+                <input type="email" name='email' placeholder='Enter an email' />
                 <label htmlFor="password">Password</label>
-                <input type="password" name='password' placeholder='Enter a password' value={data.password} onChange={handleChange} />
+                <input type="password" name='password' placeholder='Enter a password' />
                 <button type='submit'>Register</button>
             </form>
         </div>
