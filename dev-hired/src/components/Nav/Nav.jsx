@@ -16,6 +16,7 @@ function Nav() {
                     <li>Home</li>
                     <li>Register</li>
                     <li>Login</li>
+                    <button onClick={() => app.auth().signOut()}>Sign Out</button>
                 </ul>
             </div>
         </nav>

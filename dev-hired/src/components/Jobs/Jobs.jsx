@@ -7,16 +7,16 @@ function Jobs(props) {
         company: 'Google',
         title: 'Software Engineer'
     })
-    useEffect(() => {
-        api()
-            .get('jobs')
-            .then(res => {
-                console.log(res)
-            })
-            .catch(err => {
-                throw (err)
-            })
-    }, [])
+    // useEffect(() => {
+    //     api()
+    //         .get('jobs')
+    //         .then(res => {
+    //             console.log(res)
+    //         })
+    //         .catch(err => {
+    //             throw (err)
+    //         })
+    // }, [])
 
     // useEffect(() => {
     //     api()

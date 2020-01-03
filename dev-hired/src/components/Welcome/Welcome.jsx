@@ -6,7 +6,7 @@ import people from '../../images/landing-people.svg';
 function Welcome({ history }) {
     return (
         <>
-            <Nav />
+
             <div className="welcome">
                 <div className="cta">
                     <h1>Organization made simple.</h1>
